@@ -1,0 +1,73 @@
+priority -50
+
+
+snippet cc "Filename::"
+${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}::
+endsnippet
+
+snippet sing "singleton"
+#pragma once
+
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
+{
+private:
+public:
+	static $1& getInstance(){
+		static $1 instance;
+		return instance;
+	};
+	$1() {$2};
+	$1($1 const&); //don't implement
+	void operator=($1 const&); //don't implement
+};
+
+endsnippet
+
+snippet be "$1.begin(), $1.end() (beginend)"
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet
+
+snippet defmove "default move and copy constructor"
+${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}(const $1& p) = default;
+$1& operator=(const $1& p) = default;
+$1($1&& p) = default;
+$1& operator=($1&& p) = default;
+endsnippet
+
+snippet forr "for range"
+for (auto &${1:i} : ${2:v})
+{
+	$3
+}
+endsnippet
+
+snippet cout "cout<<'x='<<x<<'\\n'"
+std::cout<<"${1:i} = "<<$1<<"/n";
+endsnippet
+
+
+
+snippet main "extended main"
+#include <vector>
+#include <string>
+#include <iostream>
+#include <stdio.h>
+#include <fstream>
+
+//g++ `!v expand('%:t')`  -std=c++11 -o a.exe && ./a.exe
+
+using namespace std;
+
+int main(int argc, char const *argv[])
+{
+	${2:cout<<"hello world!"<<endl;
+
+	ifstream file("filename.txt");
+	string s2;
+	while (getline(file, s2)) //any newline will stop the reading
+	cout << s2 << endl;
+}
+
+	return 0;
+}
+endsnippet
