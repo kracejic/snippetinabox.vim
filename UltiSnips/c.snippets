@@ -45,6 +45,66 @@ snippet cout "cout<<'x='<<x<<'\\n'"
 std::cout<<"${1:i} = "<<$1<<"/n";
 endsnippet
 
+snippet std "std::"
+std::$1
+endsnippet
+
+snippet t "this->"
+this->$1
+endsnippet
+
+snippet usingnamespace "using namespace"
+using namespace $1;
+endsnippet
+
+snippet up "unique pointer"
+std::unique_ptr<$1> ${2:var};
+endsnippet
+
+snippet mu "make unique pointer"
+std::make_unique<$1>(${2:var});
+endsnippet
+
+snippet sp "shared pointer"
+std::shared_ptr<$1> ${2:var};
+endsnippet
+
+snippet ms "make shared pointer"
+std::make_shared<$1>(${2:var});
+endsnippet
+
+
+snippet i8 "int8_t"
+int8_t ${1:var}${2: = 0};
+endsnippet
+
+snippet i16 "int16_t"
+int16_t ${1:var}${2: = 0};
+endsnippet
+
+snippet i32 "int32_t"
+int32_t ${1:var}${2: = 0};
+endsnippet
+
+snippet i64 "int64_t"
+int64_t ${1:var}${2: = 0};
+endsnippet
+
+snippet u8 "uint8_t"
+uint8_t ${1:var}${2: = 0};
+endsnippet
+
+snippet u16 "uint16_t"
+uint16_t ${1:var}${2: = 0};
+endsnippet
+
+snippet u32 "uint32_t"
+uint32_t ${1:var}${2: = 0};
+endsnippet
+
+snippet u64 "uint64_t"
+uint64_t ${1:var}${2: = 0};
+endsnippet
 
 
 snippet main "extended main"
