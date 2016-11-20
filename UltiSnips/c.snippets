@@ -49,6 +49,18 @@ snippet std "std::"
 std::$1
 endsnippet
 
+snippet temp "template <class T>"
+template <class ${1:T}>
+endsnippet
+
+snippet tfun "templated function"
+template <class ${1:T}>
+${2:auto} ${3:function_name} ($4)
+{
+	$5
+}
+endsnippet
+
 snippet t "this->"
 this->$1
 endsnippet
@@ -114,7 +126,7 @@ snippet main "extended main"
 #include <stdio.h>
 #include <fstream>
 
-//g++ `!v expand('%:t')`  -std=c++11 -o a.exe && ./a.exe
+//g++ `!v expand('%:t')` -std=c++14 -o a.exe && ./a.exe
 
 using namespace std;
 
@@ -125,9 +137,11 @@ int main(int argc, char const *argv[])
 	ifstream file("filename.txt");
 	string s2;
 	while (getline(file, s2)) //any newline will stop the reading
-	cout << s2 << endl;
+		cout << s2 << endl;
 }
 
 	return 0;
 }
 endsnippet
+
+
