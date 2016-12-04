@@ -42,7 +42,7 @@ for (auto &${1:i} : ${2:v})
 endsnippet
 
 snippet cout "cout<<'x='<<x<<'\\n'"
-std::cout<<"${1:i} = "<<$1<<"/n";
+std::cout<<"${1:i} = "<<$1<<"\n";
 endsnippet
 
 snippet std "std::"
@@ -145,3 +145,34 @@ int main(int argc, char const *argv[])
 endsnippet
 
 
+
+#------------------------------------------------------------------------------
+# Catch
+
+snippet catchq "catch unittest with quards"
+//-----------------------------------------------------------------------------
+#ifdef UNIT_TESTS
+#include "catch.hpp"
+
+TEST_CASE("$1")
+{
+	$2
+	REQUIRE($3);
+}
+
+#endif
+endsnippet
+
+snippet test "catch unittest"
+TEST_CASE("$1")
+{
+	$2
+	REQUIRE($3);
+}
+endsnippet
+
+snippet req "catch REQUIRE"
+REQUIRE($1);
+endsnippet
+
+#------------------------------------------------------------------------------
