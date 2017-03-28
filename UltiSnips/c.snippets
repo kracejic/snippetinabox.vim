@@ -145,11 +145,42 @@ int main(int argc, char const *argv[])
 endsnippet
 
 
+snippet async "std::async"
+async(${1:std::launch::async, }[${2:this}](${3}){
+	${4:return true;}
+});
+endsnippet
+
+# spdlog snippets
+snippet ll "L->debug(a, a)"
+L->debug("${1:var} = {}", $1);
+endsnippet
+
+snippet l "L->debug()"
+L->debug("${1:log}"${2});
+endsnippet
+
+snippet debug "L->debug()"
+L->debug("${1:log}"${2});
+endsnippet
+
+snippet info "L->info()"
+L->info("${1:log}"${2});
+endsnippet
+
+snippet warn "L->warn()"
+L->warn("${1:log}"${2});
+endsnippet
+
+snippet error "L->error()"
+L->error("${1:log}"${2});
+endsnippet
+
 
 #------------------------------------------------------------------------------
 # Catch
 
-snippet catchq "catch unittest with quards"
+snippet catch "catch unittest with quards"
 //-----------------------------------------------------------------------------
 #ifdef UNIT_TESTS
 #include "catch.hpp"
