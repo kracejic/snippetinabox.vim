@@ -1,0 +1,84 @@
+
+snippet if "if"
+if (${1:MINGW})
+	${2:}
+endif()
+endsnippet
+
+snippet ifel "if else"
+if (${1:MINGW})
+	${2:}
+else()
+	${3:}
+endif()
+endsnippet
+
+snippet mess "message"
+message(STATUS "${1:CMAKE_BUILD_TYPE}: \${$1}")
+endsnippet
+
+snippet set "set"
+set(VERSION_TYPE "${1:VER_NAME}" CACHE STRING "${2:TODO description}" FORCE)
+endsnippet
+
+
+snippet bindir "${CMAKE_CURRENT_BINARY_DIR}"
+${CMAKE_CURRENT_BINARY_DIR}
+endsnippet
+
+snippet bindirtop "${CMAKE_BINARY_DIR}"
+${CMAKE_BINARY_DIR}
+endsnippet
+
+snippet bindirpro "${PROJECT_BINARY_DIR}"
+${PROJECT_BINARY_DIR}
+endsnippet
+
+
+snippet srcdir "${CMAKE_CURRENT_SOURCE_DIR}"
+${CMAKE_CURRENT_SOURCE_DIR}
+endsnippet
+
+snippet srcdirtop "${CMAKE_SOURCE_DIR}"
+${CMAKE_SOURCE_DIR}
+endsnippet
+
+snippet srcdirpro "${PROJECT_SOURCE_DIR}"
+${PROJECT_SOURCE_DIR}
+endsnippet
+
+snippet add "add_subdirectory"
+add_subdirectory(${1:source})
+endsnippet
+
+snippet inc "include_directories"
+include_directories(${2:SYSTEM} ${1:${PROJECT_SOURCE_DIR}/source})
+endsnippet
+snippet link "link_libraries"
+link_libraries(${1:${PROJECT_SOURCE_DIR}/source})
+endsnippet
+snippet def "add_definitions"
+add_definitions(${1:-DSOME_DEFINE})
+endsnippet
+snippet flags "target_compile_options"
+add_compile_options(-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wunused -pedantic)
+endsnippet
+
+snippet cpp14 "set_property CXX_STANDARD 14"
+set_property(TARGET ${1:target} PROPERTY CXX_STANDARD 14)
+endsnippet
+
+snippet inct "target_include_directories"
+target_include_directories(${1:target} ${2:SYSTEM PRIVATE} ${3:${PROJECT_SOURCE_DIR}/source})
+endsnippet
+snippet linkt "target_link_libraries"
+target_link_libraries(${1:target} ${2:PRIVATE} ${3:${PROJECT_SOURCE_DIR}/source})
+endsnippet
+snippet deft "target_compile_definitions"
+target_compile_definitions(${1:target} ${2:PRIVATE} ${3:-DSOME_DEFINE})
+endsnippet
+snippet flagst "target_compile_options"
+target_compile_options(${1:target} ${2:PRIVATE} ${3:-O3})
+endsnippet
+
+

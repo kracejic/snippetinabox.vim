@@ -1,6 +1,14 @@
 priority -50
 
 
+snippet inc "include"
+#include "${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}.h"
+endsnippet
+
+snippet Inc "include <>"
+#include <${1:string}>
+endsnippet
+
 snippet cc "Filename::"
 ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}::
 endsnippet
@@ -70,19 +78,19 @@ using namespace $1;
 endsnippet
 
 snippet up "unique pointer"
-std::unique_ptr<$1> ${2:var};
+std::unique_ptr<$1> ${2:var}
 endsnippet
 
 snippet mu "make unique pointer"
-std::make_unique<$1>(${2:var});
+std::make_unique<$1>(${2:var})
 endsnippet
 
 snippet sp "shared pointer"
-std::shared_ptr<$1> ${2:var};
+std::shared_ptr<$1> ${2:var}
 endsnippet
 
 snippet ms "make shared pointer"
-std::make_shared<$1>(${2:var});
+std::make_shared<$1>(${2:var})
 endsnippet
 
 
@@ -153,7 +161,7 @@ endsnippet
 
 # spdlog snippets
 snippet ll "L->debug(a, a)"
-L->debug("${1:var} = {}", $1);
+L->${3:debug}("${1:var} = {}", $1);
 endsnippet
 
 snippet l "L->debug()"
