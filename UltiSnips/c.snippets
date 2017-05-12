@@ -61,9 +61,67 @@ snippet temp "template <class T>"
 template <class ${1:T}>
 endsnippet
 
+snippet enum "enum class"
+enum class ${1:name}
+{
+	$2
+};
+endsnippet
+
+snippet struct "struct"
+struct ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
+{
+	$2
+};
+endsnippet
+
+snippet class "struct"
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
+{
+private:
+	$2
+public:
+	$3
+};
+endsnippet
+
+snippet strl "string literal"
+R"($1)"
+endsnippet
+
+snippet str "string"
+std::string ${1:text}
+endsnippet
+
+snippet mut "std::mutex"
+std::mutex ${1:lock}
+endsnippet
+
+snippet lock "std::unique_lock"
+std::unique_lock<std::mutex> lock(${1:lock});
+endsnippet
+
+snippet alg "std::algorithm(begin, end);"
+${1:sort}(${2:v}.begin(), $2.end()${3:, [](auto& it$4){$5}})
+endsnippet
+
+snippet fun "function"
+${1:void} ${2:foo}($3)
+{
+	$4
+}
+endsnippet
+
 snippet tfun "templated function"
 template <class ${1:T}>
 ${2:auto} ${3:function_name} ($4)
+{
+	$5
+}
+endsnippet
+
+snippet cfun "void Filename::Foo(){}"
+${1:void} ${2:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}::${3:foo}($4)
 {
 	$5
 }
@@ -126,6 +184,17 @@ snippet u64 "uint64_t"
 uint64_t ${1:var}
 endsnippet
 
+snippet load "load file to string"
+std::ifstream file(${1:"file.txt"});
+file.seekg(0, std::ios::end);
+std::string ${2:buffer};
+$2.reserve(file.tellg());
+file.seekg(0, std::ios::beg);
+$2.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+${3:#include <string>
+#include <fstream>
+#include <streambuf> }
+endsnippet
 
 snippet main "extended main"
 #include <vector>
