@@ -184,6 +184,38 @@ snippet u64 "uint64_t"
 uint64_t ${1:var}
 endsnippet
 
+snippet set "setter"
+void set${1/(.)(.*)/\u$1$2/}(${2:const std::string&} _${1:var}) {$1 = _$1;};
+endsnippet
+snippet get "getter"
+${2:const std::string&} get${1/(.)(.*)/\u$1$2/}() {return ${1:var};};
+endsnippet
+snippet setget "setter and getter"
+void set${1/(.)(.*)/\u$1$2/}(${2:const std::string&} _${1:var}) {$1 = _$1;};
+$2 get${1/(.)(.*)/\u$1$2/}() {return $1;};
+endsnippet
+
+snippet //co "clang-format on/off"
+// clang-format off
+// clang-format on
+endsnippet
+snippet //clang "clang-format on/off"
+// clang-format off
+// clang-format on
+endsnippet
+
+snippet // "comment block"
+/**
+ * $1
+ */
+endsnippet
+
+snippet /* "comment block"
+/**
+ * $1
+ */
+endsnippet
+
 snippet load "load file to string"
 std::ifstream file(${1:"file.txt"});
 file.seekg(0, std::ios::end);
