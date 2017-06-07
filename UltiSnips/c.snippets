@@ -127,12 +127,33 @@ ${1:void} ${2:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),
 }
 endsnippet
 
+snippet { "{}"
+{
+	$1
+}
+endsnippet
+
+snippet [ "[]"
+[$1]$2
+endsnippet
+
+snippet ( "()"
+($1)$2
+endsnippet
+
 snippet t "this->"
 this->$1
 endsnippet
 
 snippet un "using namespace"
 using namespace $1;
+endsnippet
+
+snippet ns "namespace"
+namespace ${1:_detail}
+{
+	$2
+}
 endsnippet
 
 snippet up "unique pointer"
