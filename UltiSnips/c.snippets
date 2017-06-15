@@ -93,6 +93,10 @@ snippet str "string"
 std::string ${1:text}
 endsnippet
 
+snippet cstr "const std::string&"
+const std::string& ${1:text}
+endsnippet
+
 snippet mut "std::mutex"
 std::mutex ${1:lock}
 endsnippet
@@ -172,6 +176,9 @@ snippet ms "make shared pointer"
 std::make_shared<$1>(${2:var})
 endsnippet
 
+snippet uc "unsigned char"
+unsigned char ${1:var}
+endsnippet
 
 snippet i8 "int8_t"
 int8_t ${1:var}
@@ -216,6 +223,10 @@ void set${1/(.)(.*)/\u$1$2/}(${2:const std::string&} _${1:var}) {$1 = _$1;};
 $2 get${1/(.)(.*)/\u$1$2/}() {return $1;};
 endsnippet
 
+snippet //cf "clang-format on/off"
+// clang-format off
+// clang-format on
+endsnippet
 snippet //co "clang-format on/off"
 // clang-format off
 // clang-format on
