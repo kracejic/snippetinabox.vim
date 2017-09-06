@@ -2,7 +2,7 @@ priority -50
 
 
 snippet inc "include"
-#include "${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}.h"
+#include "${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`.h}"
 endsnippet
 
 snippet Inc "include <>"
@@ -106,7 +106,7 @@ std::unique_lock<std::mutex> lock(${1:lock});
 endsnippet
 
 snippet alg "std::algorithm(begin, end);"
-${1:sort}(${2:v}.begin(), $2.end()${3:, [](auto& it$4){$5}})
+${1:std::sort}(${2:v}.begin(), $2.end()${3:, [](auto& it$4){$5}})
 endsnippet
 
 snippet fun "function"
@@ -147,6 +147,14 @@ endsnippet
 
 snippet t "this->"
 this->$1
+endsnippet
+
+snippet alias "namespace"
+namespace ${1:ch} = ${2:std::chrono};
+endsnippet
+
+snippet us "namespace"
+namespace ${1:ch} = ${2:std::chrono};
 endsnippet
 
 snippet un "using namespace"
