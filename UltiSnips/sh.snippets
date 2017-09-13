@@ -14,3 +14,33 @@ ${1:function_name} () {
 	$2
 }
 endsnippet
+
+snippet ifdir "if directory exists"
+if [ -f ${1:dir} ]; then
+	$2
+fi
+endsnippet
+
+snippet iffile "if directory exists"
+if [ -d ${1:dir} ]; then
+	$2
+fi
+endsnippet
+
+snippet ifarg "if #$ is enough and $x is == to"
+if [ $# -ge ${1:2} ] && [ $$1 == "${2:yes}" ]; then
+	$3
+fi
+endsnippet
+
+snippet ifargc "if number of argument is greater"
+if [ $# -gt ${1:2} ]; then
+	$2
+fi
+endsnippet
+
+snippet ignore "ignore piece of code"
+cat >/dev/null <<${1:GOTO_1}
+$1
+endsnippet
+
