@@ -9,6 +9,10 @@ snippet Inc "include <>"
 #include <${1:string}>
 endsnippet
 
+snippet cr "const reference"
+const ${1:std::string}& $2
+endsnippet
+
 snippet cc "Filename::"
 ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}::
 endsnippet
