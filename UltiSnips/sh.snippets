@@ -16,13 +16,13 @@ ${1:function_name} () {
 endsnippet
 
 snippet ifdir "if directory exists"
-if [ -f ${1:dir} ]; then
+if [ -d ${1:dir} ]; then
 	$2
 fi
 endsnippet
 
 snippet iffile "if directory exists"
-if [ -d ${1:dir} ]; then
+if [ -f ${1:file} ]; then
 	$2
 fi
 endsnippet
