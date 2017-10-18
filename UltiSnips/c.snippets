@@ -329,6 +329,22 @@ snippet error "L->error()"
 L->error("${1:log}"${2});
 endsnippet
 
+snippet sc "static_cast"
+static_cast<$1>($2)
+endsnippet
+
+snippet rc "reinterpret_cast"
+reinterpret_cast<$1>($2)
+endsnippet
+
+snippet dc "dynamic_cast"
+dynamic_cast<$1>($2)
+endsnippet
+
+snippet ccast "const_cast"
+const_cast<$1>($2)
+endsnippet
+
 
 #------------------------------------------------------------------------------
 # Catch
