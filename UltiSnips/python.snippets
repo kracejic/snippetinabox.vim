@@ -20,6 +20,20 @@ def ${1:name}($2):
 	${3:pass}
 endsnippet
 
-	
+snippet filejson "load file into json" b
+with open(${1:filename}) as ${2:data_file}:    
+	buf = json.load($2)
+endsnippet
+
+snippet filelines "load file and iterate over lines" b
+with open(${1:filename}) as ${2:data_file}:    
+	for line in $2:
+		${3:pass}
+endsnippet
+
+snippet ford "for key val in dict" b
+for key, val in $1.items():
+	${2:pass}
+endsnippet
 
 
