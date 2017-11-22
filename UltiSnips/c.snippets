@@ -9,6 +9,11 @@ snippet Inc "include <>"
 #include <${1:string}>
 endsnippet
 
+snippet incjson "include json"
+#include "json.hpp"
+using json = nlohmann::json;
+endsnippet
+
 snippet cr "const reference"
 const ${1:std::string}& $2
 endsnippet
@@ -22,17 +27,45 @@ snippet sing "singleton"
 
 class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
 {
-private:
 public:
-	static $1& getInstance(){
+	static $1& instance(){
 		static $1 instance;
 		return instance;
 	};
+private:
 	$1() {$2};
-	$1($1 const&); //don't implement
-	void operator=($1 const&); //don't implement
+	$1($1 const&) = delete;
+	void operator=($1 const&) = delete;
 };
+endsnippet
 
+snippet singl "singleton lazy"
+#pragma once
+#include <memory>
+
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
+{
+public:
+	static $1& instance(){
+		static std::unique_ptr<$1> instance;
+		if (not instance)
+			instance.reset(new $1());
+		return *instance;
+	};
+private:
+	$1() {$2};
+	$1($1 const&) = delete;
+	void operator=($1 const&) = delete;
+};
+endsnippet
+
+snippet loadjson "load file to json"
+ifstream cfg_file(${1:filaneme});
+
+if (not cfg_file)
+	return;
+json cfg;
+cfg_file >> cfg;
 endsnippet
 
 snippet be "$1.begin(), $1.end() (beginend)"
@@ -72,6 +105,10 @@ enum class ${1:name}
 };
 endsnippet
 
+snippet po "pragma once"
+#pragma once
+endsnippet
+
 snippet struct "struct"
 struct ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
 {
@@ -79,13 +116,13 @@ struct ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.
 };
 endsnippet
 
-snippet class "struct"
+snippet class "class"
 class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
 {
-private:
-	$2
 public:
 	$3
+private:
+	$2
 };
 endsnippet
 
