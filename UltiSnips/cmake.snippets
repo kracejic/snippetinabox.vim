@@ -21,6 +21,26 @@ snippet set "set"
 set(VERSION_TYPE "${1:VER_NAME}" CACHE STRING "${2:TODO description}" FORCE)
 endsnippet
 
+snippet obj "library object"
+add_library(${1:object} OBJECT
+	$2
+	)
+#Use with $<TARGET_OBJECTS:$1> as a source file
+endsnippet
+
+snippet lib "library"
+add_library(${1:library}
+	$2
+	)
+install(TARGETS $1 DESTINATION .)
+endsnippet
+
+snippet exe "executable"
+add_library(${1:executable}
+	$2
+	)
+install(TARGETS $1 DESTINATION .)
+endsnippet
 
 snippet bindir "${CMAKE_CURRENT_BINARY_DIR}"
 ${CMAKE_CURRENT_BINARY_DIR}
@@ -83,8 +103,50 @@ endsnippet
 
 snippet option "add CMake option"
 option(${1:OPTION_NAME} "${2:description}" ${3:OFF})
-message(STATUS "                                          ${TESTER}")
+message(STATUS "                                          ${$1}")
 if($1)
 	$4
+endif()
+endsnippet
+
+snippet convmacro "Add convenience targets macro"
+# Helper macro for creating convenient targets
+find_program(GDB_PATH gdb)
+macro(addConvenience TARGET)
+	add_custom_target(${TARGET}-run
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+		DEPENDS ${TARGET}
+		COMMAND ./${TARGET})
+	# convenience run gdb target
+	if(GDB_PATH)
+		add_custom_target(${TARGET}-gdb
+			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			DEPENDS ${TARGET}
+			COMMAND ${GDB_PATH} ./${TARGET})
+	endif()
+	install(TARGETS ${TARGET} DESTINATION .)
+endmacro()
+endsnippet
+
+snippet clangsan "clang sanitizers"
+option(CLANG_ADDRESS_SAN "description" OFF)
+message(STATUS "CLANG_ADDRESS_SAN                         ${CLANG_ADDRESS_SAN}")
+if(CLANG_ADDRESS_SAN)
+	add_compile_options(-fsanitize=address -fno-omit-frame-pointer)
+	link_libraries(-fsanitize=address -fno-omit-frame-pointer)
+endif()
+
+option(CLANG_MEMORY_SAN "description" OFF)
+message(STATUS "CLANG_MEMORY_SAN                          ${CLANG_MEMORY_SAN}")
+if(CLANG_MEMORY_SAN)
+	add_compile_options(-fsanitize=memory -fno-omit-frame-pointer)
+	link_libraries(-fsanitize=memory -fno-omit-frame-pointer)
+endif()
+
+option(CLANG_UB_SAN "description" OFF)
+message(STATUS "CLANG_UB_SAN                              ${CLANG_UB_SAN}")
+if(CLANG_UB_SAN)
+	add_compile_options(-fsanitize=undefined)
+	link_libraries(-fsanitize=undefined)
 endif()
 endsnippet
