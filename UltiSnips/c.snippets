@@ -87,7 +87,7 @@ $1& operator=($1&& p) = default;
 endsnippet
 
 snippet forb "for begin, end"
-for (auto &${1:it} = ${2:v}.begin(); $1 != $2.end(); ++$1)
+for (auto ${1:it} = ${2:v}.begin(); $1 != $2.end(); ++$1)
 {
 	$3
 }
