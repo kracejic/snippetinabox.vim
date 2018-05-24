@@ -7,31 +7,31 @@
 priority -60
 
 
-snippet s "self." b
+snippet s "self."
 self.
 endsnippet
 
-snippet t "self." b
+snippet t "self."
 self.
 endsnippet
 
-snippet fun "function" b
+snippet fun "function"
 def ${1:name}($2):
 	${3:pass}
 endsnippet
 
-snippet filejson "load file into json" b
+snippet filejson "load file into json"
 with open(${1:filename}) as ${2:data_file}:    
 	buf = json.load($2)
 endsnippet
 
-snippet filelines "load file and iterate over lines" b
+snippet filelines "load file and iterate over lines"
 with open(${1:filename}) as ${2:data_file}:    
 	for line in $2:
 		${3:pass}
 endsnippet
 
-snippet ford "for key val in dict" b
+snippet ford "for key val in dict"
 for key, val in $1.items():
 	${2:pass}
 endsnippet

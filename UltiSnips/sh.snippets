@@ -8,8 +8,13 @@
 # ~-55 so that other filetypes will still overwrite.
 priority -60
 
+snippet for "for count"
+for (( c=1; c<=${2:10}; c++ )) ; do
+	${2:echo $c}
+done
+endsnippet
 
-snippet fun "sh function" b
+snippet fun "sh function"
 ${1:function_name} () {
 	$2
 }
