@@ -13,12 +13,16 @@ else()
 endif()
 endsnippet
 
-snippet mess "message"
+snippet message "message"
 message(STATUS "${1:CMAKE_BUILD_TYPE}: \${$1}")
 endsnippet
 
 snippet set "set"
-set(VERSION_TYPE "${1:VER_NAME}" CACHE STRING "${2:TODO description}" FORCE)
+set(${1:VARIABLE} ${2:VALUE})
+endsnippet
+
+snippet seto "set persistent variable"
+set(VERSION_TYPE "${1:VARIABLE}" CACHE STRING "${2:description here}" FORCE)
 endsnippet
 
 snippet obj "library object"
@@ -107,6 +111,12 @@ message(STATUS "                                          ${$1}")
 if($1)
 	$4
 endif()
+endsnippet
+
+snippet macro "new macro"
+macro(${1:macroName})
+	$2
+endmacro()
 endsnippet
 
 snippet convmacro "Add convenience targets macro"
